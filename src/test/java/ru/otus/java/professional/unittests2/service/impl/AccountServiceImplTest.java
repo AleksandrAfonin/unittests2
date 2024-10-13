@@ -85,12 +85,8 @@ public class AccountServiceImplTest {
     lenient().when(accountDao.findById(eq(1L))).thenReturn(Optional.empty());
     lenient().when(accountDao.findById(eq(2L))).thenReturn(Optional.empty());
 
-    assertThrows(AccountException.class, new Executable() {
-      @Override
-      public void execute() throws Throwable {
-        accountServiceImpl.makeTransfer(1L, 2L, new BigDecimal(10));
-      }
-    });
+    assertThrows(AccountException.class, () -> accountServiceImpl.makeTransfer(1L, 2L, new BigDecimal(10)));
+
   }
 
   @Test

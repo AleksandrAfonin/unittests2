@@ -29,7 +29,12 @@ public class AccountServiceImplParametrizedTest {
     AccountServiceImpl accountServiceImpl;
 
     @ParameterizedTest
-    @CsvSource({"100, 10, true", "10, 100, false", "10, 0, false", "10, -1, false"})
+    @CsvSource({
+            "100, 10, true",
+            "10, 100, false",
+            "10, 0, false",
+            "10, -1, false"
+    })
     public void testTransferValidation(String sourceSum, String transferSum, String expectedResult) {
         BigDecimal sourceAmount = new BigDecimal(sourceSum);
         BigDecimal transferAmount = new BigDecimal(transferSum);
@@ -68,10 +73,10 @@ public class AccountServiceImplParametrizedTest {
 
     public static Stream<? extends Arguments> provideParameters() {
         return Stream.of(
-            Arguments.of(new BigDecimal(100), new BigDecimal(10), true),
-            Arguments.of(new BigDecimal(10), new BigDecimal(100), false),
-            Arguments.of(new BigDecimal(100), new BigDecimal(0), false),
-            Arguments.of(new BigDecimal(100), new BigDecimal(-1), false)
+            Arguments.of(BigDecimal.valueOf(100), BigDecimal.valueOf(10), true),
+            Arguments.of(BigDecimal.valueOf(10), BigDecimal.valueOf(100), false),
+            Arguments.of(BigDecimal.valueOf(100), BigDecimal.valueOf(0), false),
+            Arguments.of(BigDecimal.valueOf(100), BigDecimal.valueOf(-1), false)
         );
     }
 }
